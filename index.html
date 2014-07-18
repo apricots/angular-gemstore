@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="store">
+<head><!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+  <script type="text/javascript" src="angular.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</head>
+  <body ng-controller="StoreController as store">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="product in store.products">
+        <h3>
+          {{product.name}}
+          <em class="pull-right">{{product.price | currency}}</em>
+        </h3>
+        <p>{{product.description}}</p>
+      </li>
+    </ul>
+
+    <section ng-controlled="PanelController as panel">
+      <ul class="nav nav-pills">
+        <li class="{ active:panel.isSelected(1) }">
+          <a href ng-click="panel.selectTab(1)">Description</a>
+        </li>
+        <li class="{ active:panel.isSelected(2) }">
+          <a href ng-click="panel.selectTab(2)">Specifications</a>
+        </li>
+        <li class="{ active:panel.isSelected(3) }">
+          <a href ng-click="panel.selectTab(3)">Reviews</a>
+        </li>
+      </ul>  
+    </section>
+
+    <div class="panel" ng-show="panel.isSelected(1)">
+      <h4>Description</h4>
+      <p>{{product.description}}</p>
+    </div>
+    <div class="panel" ng-show="tab === 2">
+      <h4>Specifications</h4>
+      <blockquote>None Yet</blockquote>
+    </div>
+    <div class="panel" ng-show="tab === 3">
+      <h4>Reviews</h4>
+      <blockquote>None yet</blockquote>
+    </div>
+</body>
+</html>
